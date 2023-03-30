@@ -6,7 +6,7 @@ import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 
-import "./ForgeMaster.sol";
+import "./Forge/ForgeMaster.sol";
 
 contract TreasureGuardian is Ownable, ERC1155Holder {
     ForgeMaster public forgeMaster;
