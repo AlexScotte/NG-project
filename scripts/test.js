@@ -1,6 +1,7 @@
 
 const TreasureGuardian = artifacts.require("TreasureGuardian");
 const ForgeMaster = artifacts.require("ForgeMaster");
+const ForgeFactory = artifacts.require("ForgeFactory");
 
 module.exports = async (deployer, network) => {
 
@@ -11,17 +12,18 @@ module.exports = async (deployer, network) => {
 
 
     const treasureGuardianInstance = await TreasureGuardian.deployed();
-    // await treasureGuardianInstance.CreateStuff();
+    // const forgeFactoryInstance = await ForgeFactory.deployed();
+    //  const forgeMasterInstance = await ForgeMaster.deployed();
 
-    var fmaster = await ForgeMaster.at(await treasureGuardianInstance.forgeMaster());
+    var forgeMaster = await ForgeMaster.at(await treasureGuardianInstance.forgeMaster());
 
     console.log(owner);
     console.log(treasureGuardianInstance.address);
-    console.log(fmaster.address);
+    console.log(forgeMaster.address);
 
     console.log(await treasureGuardianInstance.owner());
-    console.log(await fmaster.owner());
+    console.log(await forgeMaster.owner());
 
-    console.log((await fmaster.balanceOf(treasureGuardianInstance.address, 10)).toNumber());
-    console.log((await fmaster.balanceOf(treasureGuardianInstance.address, 20)).toNumber());
+    console.log((await forgeMaster.balanceOf(treasureGuardianInstance.address, 10)).toNumber());
+    console.log((await forgeMaster.balanceOf(treasureGuardianInstance.address, 20)).toNumber());
 };
