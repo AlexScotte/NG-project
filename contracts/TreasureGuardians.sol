@@ -7,14 +7,17 @@ import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 
 import "./Forge/ForgeMaster.sol";
-import "./Forge/ForgeFactory.sol";
+import "./Forge/IronForgeFactory.sol";
 
 contract TreasureGuardian is Ownable, ERC1155Holder {
     ForgeMaster public forgeMaster;
-    ForgeFactory public forgeFactory;
+    IronForgeFactory public factory;
 
     constructor() {
-        forgeMaster = new ForgeMaster();
-        // forgeFactory = new ForgeFactory();
+        factory = new IronForgeFactory();
+        address collectionAddress = factory.forgeCollection(
+            "Node Guardians genesis collection"
+        );
+        forgeMaster = ForgeMaster(collectionAddress);
     }
 }

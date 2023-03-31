@@ -17,11 +17,9 @@ contract ForgeMaster is ERC1155, Ownable {
         ERC1155(
             "https://gateway.pinata.cloud/ipfs/QmWHoeyafsznQ6QKqWvUUZ4scivKh8j4y4PMryk2w8nN4r/{id}/json"
         )
-    {
-        ForgeItems();
-    }
+    {}
 
-    function ForgeItems() private onlyOwner {
+    function forgeItems() external onlyOwner {
         _mint(msg.sender, 10, 10 ** 2, "");
         _mint(msg.sender, 20, 5, "");
     }

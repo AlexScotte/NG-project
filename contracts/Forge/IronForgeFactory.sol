@@ -2,12 +2,13 @@
 pragma solidity ^0.8.18;
 
 import "../../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "../../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 import "../../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 import "./ForgeMaster.sol";
 
-contract ForgeFactory is Ownable {
+contract IronForgeFactory is Ownable, ERC1155Holder {
     function forgeCollection(
         string memory collectionName
     ) external returns (address collectionAddress) {
@@ -29,6 +30,8 @@ contract ForgeFactory is Ownable {
             }
         }
 
-        ForgeMaster(collectionAddress);
+        ForgeMaster forge = ForgeMaster(collectionAddress);
+        forge.forgeItems();
+        return (collectionAddress);
     }
 }
